@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -85,6 +86,11 @@ public class LoginInterceptorWS implements HandlerInterceptor {
 
   try {
    Authentication authentication = TokenAuthenticationService.getAuthentication((HttpServletRequest) request);
+   //get the user name/login
+   //in here is effective the consulting by database using 
+   //verificaLogin method
+   System.out.println(""+((UsernamePasswordAuthenticationToken) authentication).getName());
+   System.out.println(""+((UsernamePasswordAuthenticationToken) authentication).getPrincipal());
    SecurityContextHolder.getContext().setAuthentication(authentication);
   } catch (Exception ex) {
    System.out.println("" + Util.getMsgErro(ex));
