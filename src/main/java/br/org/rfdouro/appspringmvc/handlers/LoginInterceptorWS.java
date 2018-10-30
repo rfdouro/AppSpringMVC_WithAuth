@@ -94,6 +94,7 @@ public class LoginInterceptorWS implements HandlerInterceptor {
    SecurityContextHolder.getContext().setAuthentication(authentication);
   } catch (Exception ex) {
    System.out.println("" + Util.getMsgErro(ex));
+   return false;
   }
 
   boolean config = Boolean.parseBoolean(Util.getValorPropriedade(request.getServletContext(), "config"));

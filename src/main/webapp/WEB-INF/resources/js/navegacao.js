@@ -54,6 +54,8 @@ function customizaNavegacao() {
  * @returns {undefined}
  */
 function customizaNavegacaoJQuery() {
+ var auth = sessionStorage.getItem('Authorization');
+
  $(document).find("a").each(function () {
   var d = null;
   var h = $(this).attr("href");
@@ -62,7 +64,7 @@ function customizaNavegacaoJQuery() {
   } catch (ex) {
    console.log(ex);
   }
-  if (d != null && h != "#!" && h != "#") {
+  if (d != null && h != "#!" && h != "#" && (auth != 'null')) {
    $(this).attr("href", "#!");
    $(this).on("click", function (evt) {
     //efetua load no div

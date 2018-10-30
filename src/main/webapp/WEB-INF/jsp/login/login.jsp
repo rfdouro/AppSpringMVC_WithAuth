@@ -12,7 +12,7 @@
 
  <div id="appLogin">
   <form v-on:submit.prevent="loga">
-   <input type="hidden" name="redir" value="${redir}"/>
+   <input type="hidden" name="redir" v-model="redir"/>
    <fieldset>
     <legend>Login</legend>
     <div class="row">
@@ -34,7 +34,7 @@
   var vLogin = new Vue({
    el: "#appLogin",
    data: {
-    redir: '${redir}',
+    redir: '${cp}',
     login: '',
     senha: ''
    },
@@ -42,7 +42,7 @@
     loga: function () {
      var urlLoga = '${cp}/login/logaWS';
      var dados = {login: vLogin.login, senha: vLogin.senha};
-     alert(dados.login);
+
      $.ajax({
       type: "POST",
       //the url where you want to sent the userName and password to
@@ -58,7 +58,7 @@
        //console.log(request.getAllResponseHeaders());
        var auth = request.getResponseHeader('authorization').split(' ')[1];
        sessionStorage.setItem('Authorization', auth);
-       alert(dt);
+       document.location = vLogin.redir;
       },
       error: function (xhr, ajaxOptions, thrownError) {
        alert(xhr.status);

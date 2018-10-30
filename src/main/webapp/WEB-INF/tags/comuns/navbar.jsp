@@ -1,3 +1,9 @@
+<script>
+ function desloga(){
+  sessionStorage.setItem('Authorization', null);
+  document.location='login/confirmaDesloga';
+ }
+</script>
 <nav class="navbar navbar-default sidebarNavigation" data-sidebarClass="navbar-inverse">
  <div class="container-fluid">
   <div class="navbar-header">
@@ -80,7 +86,7 @@
       </li>
       <li class="divider"></li>
       <li>
-       <a href="#!">
+       <a href="#!" onclick="desloga();">
         <i class="fa fa-arrow-circle-left text-danger"></i>&nbsp;Desconectar
        </a>
       </li>
