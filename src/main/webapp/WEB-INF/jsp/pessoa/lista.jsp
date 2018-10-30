@@ -51,7 +51,25 @@
   methods: {
    salva: function () {
     mostraSplash();
-    $.post("ws/pessoa", this.pessoa, function (data) {
+    var auth = (sessionStorage.getItem('Authorization') != null) ? sessionStorage.getItem('Authorization') : null;
+    $.ajax({
+     url: "ws/pessoa",
+     data: v.pessoa,
+     method: 'POST',
+     beforeSend: function (xhr) {
+      xhr.setRequestHeader('Authorization', auth);
+     },
+     success: function (data) {
+      bootbox.alert({
+       title: 'Mensagem',
+       message: data,
+       callback: function () {
+        v.getLista();
+       }
+      });
+     }
+    });
+    /*$.post("ws/pessoa", this.pessoa, function (data) {
      bootbox.alert({
       title: 'Mensagem',
       message: data,
@@ -59,7 +77,7 @@
        v.getLista();
       }
      });
-    });
+    });*/
     return false;
    },
    exclui: function (idE) {
@@ -106,6 +124,7 @@
      escondeSplash();
      });*/
     var auth = (sessionStorage.getItem('Authorization') != null) ? sessionStorage.getItem('Authorization') : null;
+
     $.ajax({
      url: "ws/pessoa/",
      data: null,

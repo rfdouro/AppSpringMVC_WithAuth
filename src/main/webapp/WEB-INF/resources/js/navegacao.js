@@ -64,7 +64,7 @@ function customizaNavegacaoJQuery() {
   } catch (ex) {
    console.log(ex);
   }
-  if (d != null && h != "#!" && h != "#" && (auth != 'null')) {
+  if (d != null && h != "#!" && h != "#" && (auth != null && auth != 'null')) {
    $(this).attr("href", "#!");
    $(this).on("click", function (evt) {
     //efetua load no div
